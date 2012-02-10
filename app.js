@@ -22,6 +22,7 @@ require('./models/user');
  * Routes
   */
 var site = require('./routes/site')
+  , accueil = require('./routes/accueil')
   , post = require('./routes/post')
   , user = require('./routes/user')
   , session = require('./routes/session');
@@ -73,6 +74,10 @@ app.get('/', site.index);
 app.get('/login', session.requestLogin);
 app.get('/logout', session.logout);
 app.post('/login', session.login);
+
+// User homepage
+app.all('/accueil', andRestrictToSelf);
+app.get('/accueil', accueil.index);
 
 // User
 app.get('/users', user.list);

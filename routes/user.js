@@ -34,7 +34,8 @@ console.log('Op asked : create');
 		} else {
 			req.flash('notice', 'Created successfully');
 			console.log('Created successfully / ' + newUser._id);
-			res.redirect('/user/' + newUser._id)
+			req.session.user = newUser;
+			res.redirect('/accueil');
 		}
 	});
 };
