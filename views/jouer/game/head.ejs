@@ -1,0 +1,15 @@
+﻿now.ready(function() {
+	now.addTo('morpion');
+});
+		
+$('#poke').click(function() {
+	now.sendMessageToChannel('morpion', $('#name').val());
+});
+now.receiveMessage = function(message) {
+	$("#chatroom").append("<br>" + message);
+}
+
+$("#send-button").click(function(){
+now.distributeMessage($("#text-input").val());
+$("#text-input").val("");
+});

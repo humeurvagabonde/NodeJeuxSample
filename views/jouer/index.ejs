@@ -1,0 +1,24 @@
+﻿<% title = 'Jeux de société en ligne comme à la maison - Jouer!!' %>
+<% head = partial('head') %>
+<% categoryNav = partial('categoryNav') %>
+<% sidebar = partial('sidebar') %>
+
+<h1>Jouer</h1>
+
+<div id="dialog-form" title="Create an account">
+	<p class="validateTips">All form fields are required.</p>
+
+	<form id="create-game-form" method="post" action="/jouer/tictactoe">
+		<fieldset>
+			<label for="name">Name</label>
+			<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+		</fieldset>
+	</form>
+</div>
+
+<div id="container" style="display:none">
+	<div id="default">
+		<h1>#{title}</h1>
+		<p>#{text}</p>
+	</div>
+</div>

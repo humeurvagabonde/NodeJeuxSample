@@ -1,18 +1,30 @@
-<% if (request.session && request.session.user) { %>
+﻿<% if (request.loggedIn) { %>
 	<ul id="menu">
 	  <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-	  <li class="selected"><a href="index.html">Home</a></li>
-	  <li><a href="account.html">Compte</a></li>
-	  <li><a href="games.html">Jeux</a></li>
-	  <li><a href="stats.html">Stats</a></li>
+	  <li <% if (response.currentPage == 'accueil') { %> class='selected' <% } %>>
+		<a href="/">Accueil</a>
+	  </li>
+	  <li <% if (response.currentPage == 'compte') { %> class='selected' <% } %>>
+	    <a href="/compte">Mon Compte</a>
+	  </li>
+	  <li <% if (response.currentPage == 'jouer') { %> class='selected' <% } %>>
+	    <a href="/jouer">Jouer</a>
+	  </li>
+	  <li>
+	    <a href="/logout">Se déconnecter</a>
+	  </li>
 	</ul>
 <% } else { %>
 	<ul id="menu">
 	  <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-	  <li class="selected"><a href="index.html">Home</a></li>
-	  <li><a href="examples.html">Examples</a></li>
-	  <li><a href="page.html">A Page</a></li>
-	  <li><a href="another_page.html">Another Page</a></li>
-	  <li><a href="contact.html">Contact Us</a></li>
+	  <li <% if (response.currentPage == 'accueil') { %> class='selected' <% } %>>
+	    <a href="/">Accueil</a>
+	  </li>
+	  <li <% if (response.currentPage == 'compte') { %> class='selected' <% } %>>
+	    <a href="/compte">Mon Compte</a>
+	  </li>
+	  <li <% if (response.currentPage == 'jouer') { %> class='selected' <% } %>>
+	    <a href="/jouer">Jouer</a>
+	  </li>
 	</ul>
 <% } %>

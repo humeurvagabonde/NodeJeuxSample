@@ -1,18 +1,19 @@
-// Fake user database
+﻿// Fake user database
 var users = [
     { name: 'TJ', password: 'tjp', email: 'tj@vision-media.ca' }
   , { name: 'Tobi', password: 'tobip', email: 'tobi@vision-media.ca' }
 ];
 
 var utils = require('../lib/utils')
-var User = mongoose.model('User');
+var userService = require('../lib/userService');
+//var User = mongoose.model('User');
 
 exports.list = function(req, res){
   res.render('users', { title: 'Users', users: users });
 };
-
+/* a mettre dans userService */
+/*
 exports.load = function(req, res, next){
-	console.log('Op asked : load ' + req.params.id);
 	User.findById(req.params.id, function (err, user) {
 		if (err) {
 			next(new Error('cannot find user ' + req.params.id));
@@ -22,20 +23,20 @@ exports.load = function(req, res, next){
 		}
 	});
 };
+*/
 
 exports.create = function(req, res) {
-console.log('Op asked : create');
-	var newUser = new User(req.body.user);
-	newUser.save(function(err) {
+console.log('Create' + req.body.user) ;
+	userService.register(req.body.user, function(err, user) {
 		if (err) {
 			utils.mongooseErrorHandler(err, req);
 			console.log('Save failure / ' + err);
 			res.redirect('/');
 		} else {
 			req.flash('notice', 'Created successfully');
-			console.log('Created successfully / ' + newUser._id);
-			req.session.user = newUser;
-			res.redirect('/accueil');
+			console.log('Created successfully / ' + user._id);
+			req.session.user = user;
+			res.redirect('/compte');
 		}
 	});
 };

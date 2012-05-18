@@ -1,3 +1,3 @@
-default:
+﻿default:
   db:
     usersUri: "mongodb://localhost/users"

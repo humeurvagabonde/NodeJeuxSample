@@ -1,29 +1,22 @@
-<!doctype html>  
+﻿<!doctype html>  
 <html>  
 <head>  
+    <meta charset="UTF-8">
     <title><%= title %></title>
 	<link href="/shadowplay/style.css" rel="stylesheet" />
 	<link href="/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+	<link href="/jquery-notify/ui.notify.css" rel="stylesheet"  />
 	<script src="/head.load.min.js" type="text/javascript"></script>
 	<script>
-		head.js('/jquery-ui-1.8.17.custom.min.js')
-			.js('/jquery-1.7.1.min.js')
+		head.js('/jquery-1.7.1.min.js')
+		    .js('/jquery-ui-1.8.17.custom.min.js')
+			.js('/jquery-notify/jquery.notify.min.js')
 			.js('/nowjs/now.js');
 	</script>
 	
 	<script>
-		head.ready(function(){
-		  now.receiveMessage = function(name, message){
-			$("#messages").append("<br>" + name + ": " + message);
-		  }
-
-		  $("#send-button").click(function(){
-			now.distributeMessage($("#text-input").val());
-			$("#text-input").val("");
-		  });
-
-		  now.name = prompt("What's your name?", "");
-
+		head.ready(function() {
+		    <%- head %>
 		});
 	</script>
 </head>
@@ -46,38 +39,22 @@
 	
       <div class="sidebar">
         <!-- insert your sidebar items here -->
-        <h3>Latest News</h3>
-        <h5>January 1st, 2009</h5>
-        <p>2010 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
-        <h5>January 1st, 2010</h5>
-        <p>2010 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
-        <h3>Useful Links</h3>
-        <ul>
-          <li><a href="#">link 1</a></li>
-          <li><a href="#">link 2</a></li>
-          <li><a href="#">link 3</a></li>
-          <li><a href="#">link 4</a></li>
-        </ul>
-        <h3>Search</h3>
-        <form method="post" action="#" id="search_form">
-          <p>
-            <input class="search" type="text" name="search_field" value="Enter keywords....." />
-            <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
-          </p>
-        </form>
+		<%- sidebar %>
       </div>
 	  
       <div id="content">
         <!-- insert the page content here -->
         <h1><%= title %></h1>
+		<%- categoryNav %>
 		<%= messages() %>
 		<%- body %>
       </div>
     </div>
-    <div id="content_footer"></div>
-    <div id="footer">
-      <%- partial('commons/footer') %>
-    </div>
+    <div id="content_footer">
+		<div id="footer">
+		  <%- partial('commons/footer') %>
+		</div>
+	</div>
   </div>
 </body>
 </html>
